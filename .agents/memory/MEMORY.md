@@ -1,0 +1,1 @@
+- [Client authorization](client-authorization.md) — Aroma Heaven Spa is an authorized client rebuild; official brand assets are approved for this project.

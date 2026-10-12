@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Aroma Heaven Spa"
+description = "A modern, mobile-first website for Aroma Heaven Spa in Umhlanga, South Africa, focused on discreet service discovery and WhatsApp appointment requests."
+version = "1.0.0"
+id = "artifacts/aroma-heaven-spa"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23495
+
+[services.development]
+run = "pnpm --filter @workspace/aroma-heaven-spa run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aroma-heaven-spa", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/aroma-heaven-spa/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23495"
+BASE_PATH = "/"
