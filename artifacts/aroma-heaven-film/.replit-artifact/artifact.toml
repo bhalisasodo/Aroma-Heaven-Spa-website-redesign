@@ -1,0 +1,29 @@
+kind = "video"
+videoAspectRatio = "16:9"
+previewPath = "/aroma-heaven-film/"
+title = "Aroma Heaven Spa — Booking-First Film"
+description = "A short animated brand film about the modernized Aroma Heaven Spa website and its WhatsApp booking flow."
+version = "1.0.0"
+id = "artifacts/aroma-heaven-film"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/aroma-heaven-film/" ]
+localPort = 18441
+
+[services.development]
+run = "pnpm --filter @workspace/aroma-heaven-film run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/aroma-heaven-film", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/aroma-heaven-film/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18441"
+BASE_PATH = "/aroma-heaven-film/"
